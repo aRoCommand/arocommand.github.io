@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kategori Eksplorasi // aRo Engine</title>
+    <title>Command Basic dan Advanced di Terminal // aRo Engine</title>
     <link rel="icon" href="../files/images/favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
@@ -127,7 +127,7 @@
             gap: 12px;
         }
 
-        .theme-switcher {
+        .theme-switcher, .nav-btn {
             background: rgba(0, 255, 204, 0.05);
             border: 1px solid var(--border-neon);
             color: var(--neon-cyan);
@@ -136,125 +136,112 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
             cursor: pointer;
+            text-decoration: none;
             transition: var(--transition-smooth);
             backdrop-filter: blur(10px);
             outline: none;
-        }
-
-        .nav-btn {
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-size: 0.75rem;
             font-weight: bold;
-            letter-spacing: 1px;
-            padding: 7px 12px;
-            border: 1px solid var(--border-neon);
-            border-radius: 6px;
-            background: rgba(0, 255, 204, 0.05);
-            transition: var(--transition-smooth);
-            backdrop-filter: blur(10px);
         }
 
-        .nav-btn:hover, .theme-switcher:hover {
+        .theme-switcher:hover, .nav-btn:hover {
             background: rgba(0, 255, 204, 0.15);
             box-shadow: 0 0 20px var(--neon-cyan);
         }
 
-        /* Main Content & Bento Grid */
-        .categories-main {
-            max-width: 1200px;
+        /* Main Content Layout */
+        .article-container {
+            max-width: 1000px;
             width: 100%;
             margin: 40px auto;
             padding: 0 20px;
             flex: 1;
         }
 
-        .categories-header {
+        .article-header {
+            margin-bottom: 30px;
             text-align: center;
-            margin-bottom: 40px;
         }
 
-        .categories-header h1 {
+        .article-header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            color: #fff;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-        }
-
-        .categories-header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .bento-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .bento-box {
-            background: var(--surface-glass);
-            border: 1px solid var(--border-neon);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7), 0 8px 32px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(14px);
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .bento-box::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-            opacity: 0.5;
-        }
-
-        .bento-box:hover {
-            border-color: var(--border-glow);
-            box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 204, 0.2);
-            transform: translateY(-4px);
-        }
-
-        .bento-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.8rem;
             color: var(--neon-cyan);
             margin-bottom: 12px;
-            letter-spacing: 0.5px;
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
         }
 
-        .bento-desc {
+        .article-header p {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .cyber-card {
+            background: var(--surface-glass);
+            border: 1px solid var(--border-neon);
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7), 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(14px);
             margin-bottom: 25px;
+            position: relative;
         }
 
-        .bento-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.85rem;
+        .cyber-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--neon-purple);
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
             letter-spacing: 1px;
-            transition: var(--transition-smooth);
         }
 
-        .bento-link:hover {
-            text-shadow: 0 0 10px var(--neon-cyan);
-            gap: 12px;
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        .command-table th, .command-table td {
+            text-align: left;
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .command-table th {
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            background: rgba(0, 255, 204, 0.03);
+        }
+
+        .command-table td code {
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--neon-cyan);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-neon);
+            font-size: 0.8rem;
+        }
+
+        .command-table td {
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .command-table tr:hover td {
+            background: rgba(0, 255, 204, 0.02);
+            color: var(--text-main);
+        }
+
+        .back-nav {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         /* Footer */
@@ -272,7 +259,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -281,8 +268,9 @@
         @media(max-width: 768px) {
             .top-command-bar { flex-direction: column; gap: 10px; padding: 12px 15px; align-items: stretch; }
             .bar-actions { justify-content: space-between; width: 100%; }
+            .command-table { display: block; overflow-x: auto; }
             .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
-            .categories-header h1 { font-size: 1.6rem; }
+            .article-header h1 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -293,45 +281,116 @@
         <header class="top-command-bar">
             <div class="brand-cluster">
                 <span class="pulse-beacon"></span>
-                <span class="sys-title">// KATEGORI INDEX //</span>
+                <span class="sys-title">// TERMINAL COMMAND DATABASE //</span>
             </div>
             <div class="bar-actions">
                 <button class="theme-switcher" id="themeSelectorBtn" onclick="cycleTheme(); triggerRainbowFlash(this);">THEME: CYAN</button>
-                <a href="../index.html" class="nav-btn" onclick="triggerRainbowFlash(this)">
-                    <span>[ &lt;&lt; HOME ]</span>
+                <a href="../categories/" class="nav-btn" onclick="triggerRainbowFlash(this)">
+                    <span>[ &lt;&lt; KATEGORI ]</span>
                 </a>
             </div>
         </header>
 
-        <!-- Main Categories Container -->
-        <main class="categories-main">
-            <div class="categories-header">
-                <h1>Eksplorasi Kategori Sistem</h1>
-                <p>Pilih bento modul di bawah untuk membuka halaman spesifik berstandar produksi.</p>
+        <!-- Main Article Area -->
+        <main class="article-container">
+            <div class="article-header">
+                <h1>Command Basic dan Advanced di Terminal</h1>
+                <p>Panduan komprehensif daftar perintah sistem operasi berbasis Linux/Unix dan Windows Command Line untuk kebutuhan administratif maupun pengembangan web.</p>
             </div>
 
-            <div class="bento-container">
-                <!-- Card 1 -->
-                <div class="bento-box" onclick="playSciFiSound('click')">
-                    <div>
-                        <h3 class="bento-title">Command Basic & Advanced Terminal</h3>
-                        <p class="bento-desc">Daftar lengkap panduan perintah terminal mulai dari tingkat dasar hingga navigasi sistem tingkat lanjut.</p>
-                    </div>
-                    <a href="command-terminal-basic-hingga-advanced.html" class="bento-link" onclick="triggerRainbowFlash(this)">
-                        <span>BACA MODUL &rarr;</span>
-                    </a>
-                </div>
+            <!-- Section 1: Basic Commands -->
+            <div class="cyber-card">
+                <h2>> 01. BASIC COMMANDS (NAVIGASI & BERKAS)</h2>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Perintah dasar yang wajib dikuasai untuk bernavigasi melintasi direktori file sistem.</p>
+                
+                <table class="command-table">
+                    <thead>
+                        <tr>
+                            <th>Perintah (Command)</th>
+                            <th>Fungsi Utama & Deskripsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>pwd</code></td>
+                            <td>Menampilkan jalur absolut direktori aktif saat ini (*Print Working Directory*).</td>
+                        </tr>
+                        <tr>
+                            <td><code>ls -la</code></td>
+                            <td>Mendaftar seluruh file termasuk file tersembunyi (*hidden files*) dengan format detail.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cd [nama_folder]</code></td>
+                            <td>Berpindah masuk ke dalam direktori tertentu. Gunakan <code>cd ..</code> untuk naik satu tingkat.</td>
+                        </tr>
+                        <tr>
+                            <td><code>mkdir [nama_folder]</code></td>
+                            <td>Membuat direktori atau folder baru di lokasi aktif.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cp [sumber] [tujuan]</code></td>
+                            <td>Menyalin file atau folder dari lokasi sumber ke jalur tujuan.</td>
+                        </tr>
+                        <tr>
+                            <td><code>mv [sumber] [tujuan]</code></td>
+                            <td>Memindahkan file atau mengubah nama (*rename*) file/folder.</td>
+                        </tr>
+                        <tr>
+                            <td><code>rm -rf [nama]</code></td>
+                            <td>Menghapus file atau direktori secara permanen dan paksa (*Gunakan dengan hati-hati*).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                <!-- Card 2 -->
-                <div class="bento-box" onclick="playSciFiSound('click')">
-                    <div>
-                        <h3 class="bento-title" style="color: var(--neon-purple);">Struktur Mendesain Website</h3>
-                        <p class="bento-desc">Dokumentasi arsitektur perancangan antarmuka website modern dengan prinsip konsistensi visual tinggi.</p>
-                    </div>
-                    <a href="struktur-desain-website.html" class="bento-link" style="color: var(--neon-purple);" onclick="triggerRainbowFlash(this)">
-                        <span>BACA MODUL &rarr;</span>
-                    </a>
-                </div>
+            <!-- Section 2: Advanced Commands -->
+            <div class="cyber-card">
+                <h2>> 02. ADVANCED COMMANDS (SISTEM & JARINGAN)</h2>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Perintah lanjutan untuk manajemen proses, pengelolaan server, jaringan, dan audit keamanan.</p>
+                
+                <table class="command-table">
+                    <thead>
+                        <tr>
+                            <th>Perintah (Command)</th>
+                            <th>Fungsi Utama & Deskripsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>grep [teks] [file]</code></td>
+                            <td>Mencari pola string atau teks spesifik di dalam file atau hasil *output* perintah lain.</td>
+                        </tr>
+                        <tr>
+                            <td><code>chmod [izin] [file]</code></td>
+                            <td>Mengubah hak akses baca, tulis, dan eksekusi pada file atau direktori Linux.</td>
+                        </tr>
+                        <tr>
+                            <td><code>top / htop</code></td>
+                            <td>Memantau penggunaan sumber daya sistem secara *real-time* (CPU, Memori, Proses aktif).</td>
+                        </tr>
+                        <tr>
+                            <td><code>netstat -tulnp</code></td>
+                            <td>Menampilkan port jaringan yang terbuka serta layanan apa saja yang sedang mendengarkan (*listening*).</td>
+                        </tr>
+                        <tr>
+                            <td><code>curl -I [url]</code></td>
+                            <td>Melakukan pengujian header HTTP atau mengambil data dari server eksternal via terminal.</td>
+                        </tr>
+                        <tr>
+                            <td><code>find / -name "[nama]"</code></td>
+                            <td>Mencari file berdasarkan nama di seluruh struktur sistem direktori root.</td>
+                        </tr>
+                        <tr>
+                            <td><code>sudo apt update && sudo apt upgrade</code></td>
+                            <td>Memperbarui daftar paket repositori dan meningkatkan versi sistem operasi Debian/Ubuntu.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="back-nav">
+                <a href="../categories/" class="nav-btn" onclick="triggerRainbowFlash(this)">&larr; Kembali ke Daftar Kategori</a>
+                <a href="../index.html" class="nav-btn" onclick="triggerRainbowFlash(this)">Beranda Utama &rarr;</a>
             </div>
         </main>
 
@@ -339,7 +398,7 @@
         <footer class="main-footer">
             <div class="footer-inner">
                 <p>&copy; 2012 ~ <span id="current-year"></span> aRo Collaborative Engine. Semua Hak Cipta Dilindungi.</p>
-                <span class="footer-tag">SECURE_CATEGORIES_ACTIVE</span>
+                <span class="footer-tag">TERMINAL_DOCS_ACTIVE</span>
             </div>
         </footer>
     </div>
@@ -353,7 +412,6 @@
         let soundEnabled = localStorage.getItem('myhomes_audio') !== 'off';
 
         (function() {
-            const savedTheme = localStorage.getItem('aRo_theme') || localStorage.getItem('myhomes_cyan') === '#ffb703' ? 'gold' : 'cyan';
             const activeTheme = localStorage.getItem('aRo_theme') || 'cyan';
             document.body.setAttribute('data-theme', activeTheme);
             const btn = document.getElementById('themeSelectorBtn');
