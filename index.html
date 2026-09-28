@@ -854,14 +854,21 @@
                 neuralCanvas.style.display = 'block';
                 startNeuralMatrix();
             }
-
-            const currentPath = window.location.pathname.split("/").pop() || "#";
+            
+            const rawPath = window.location.pathname.split("/").pop();
+            const currentPath = (rawPath === "" || rawPath === "index.html") ? "index.html" : rawPath;
+            
             document.querySelectorAll(".sidebar-menu a").forEach(link => {
                 link.classList.remove("active");
                 const href = link.getAttribute("href");
-                if (href === currentPath || (currentPath === "" && href === "#")) {
-                    link.classList.add("active");
+                if (href !== "#") {
+                if (href === currentPath || (currentPath === "index.html" && href === "index.html")) {
+            link.classList.add("active");
+                    
                 }
+                    
+                }
+                
             });
 
             document.querySelectorAll(".has-dropdown > a").forEach(menuBtn => {
