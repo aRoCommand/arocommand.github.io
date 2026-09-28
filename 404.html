@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Target Not Found</title>
+    <link rel="icon" href="files/images/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --bg-main: #050508;
+            --bg-panel: #0d1117;
+            --neon-cyan: #00ffcc;
+            --neon-purple: #9d4edd;
+            --text-main: #e2e8f0;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Canvas Partikel Jejak Hologram */
+        #trail-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Terminal Boot Loader Screen */
+        #loader-screen {
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh;
+            background: #000;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .terminal-text {
+            display: inline-block;
+            text-align: left;
+            max-width: 500px;
+            line-height: 1.6;
+            color: var(--neon-cyan);
+            font-size: 14px;
+        }
+
+        .error-container {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 35px;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0, 255, 204, 0.03);
+            position: relative;
+            z-index: 3;
+            opacity: 0;
+        }
+
+        .error-code {
+            font-size: 3rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px color-mix(in srgb, var(--neon-cyan) 70%, transparent);
+            margin-bottom: 5px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .error-title {
+            font-size: 1.1rem;
+            color: var(--neon-purple);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px color-mix(in srgb, var(--neon-purple) 50%, transparent);
+        }
+
+        .error-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .widgets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .widget-box {
+            background: rgba(5, 5, 8, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .widget-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .widget-value {
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+
+        .countdown-box {
+            color: var(--text-main);
+            font-size: 0.82rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: rgba(13, 17, 23, 0.8);
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-weight: bold;
+            transition: 0.3s ease;
+            box-shadow: 0 0 12px color-mix(in srgb, var(--neon-cyan) 20%, transparent);
+        }
+
+        .btn-home:hover {
+            background: color-mix(in srgb, var(--neon-cyan) 15%, transparent);
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            box-shadow: 0 0 20px color-mix(in srgb, var(--neon-purple) 40%, transparent);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas Efek Partikel Jejak Hologram -->
+    <canvas id="trail-canvas"></canvas>
+
+    <!-- Terminal Boot Loader Screen -->
+    <div id="loader-screen">
+        <div id="terminal-log" class="terminal-text"></div>
+    </div>
+
+    <!-- Main 404 Cyber Container -->
+    <div class="error-container" id="error-card">
+        <div class="error-code">[ 404 ]</div>
+        <div class="error-title">// ROUTE_CORRUPTED_OR_MISSING</div>
+        
+        <p class="error-desc">
+            Akses ditolak. Koordinat jalur atau direktori yang Anda tuju tidak terdaftar di dalam database jaringan sistem MyHomes.
+        </p>
+
+        <div class="widgets-grid">
+            <div class="widget-box">
+                <span class="widget-label">SYSTEM STATUS</span>
+                <span class="widget-value" style="color: #ff5555;">ERROR 404</span>
+            </div>
+            <div class="widget-box">
+                <span class="widget-label">AUTO-REDIRECT</span>
+                <span class="widget-value" id="timer-val">7s</span>
+            </div>
+        </div>
+
+        <div class="countdown-box">
+            >> Mengamankan koneksi & kembali otomatis dalam <span id="timer" style="color: var(--neon-cyan); font-weight: bold;">7</span> detik.
+        </div>
+
+        <a href="/" class="btn-home" onclick="playSciFiSound('click')">&lt;&lt; Kembali ke Beranda Utama</a>
+    </div>
+
+    <!-- Integrasi Anime.js -->
+    <script src="files/js/anime.min.js"></script>
+    <script>
+        // Blokir interaksi ilegal
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // --- Web Audio API Sci-Fi Sound FX ---
+        function playSciFiSound(type = 'click') {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const audioCtx = new AudioContext();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(900, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.04);
+                    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.04);
+                } else if (type === 'boot') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.08);
+                }
+            } catch(e) {}
+        }
+
+        // --- Holographic Mouse & Touch Particle Trail ---
+        const trailCanvas = document.getElementById('trail-canvas');
+        const trailCtx = trailCanvas.getContext('2d');
+        let particlesTrail = [];
+
+        function resizeTrailCanvas() {
+            trailCanvas.width = window.innerWidth;
+            trailCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeTrailCanvas);
+        resizeTrailCanvas();
+
+        window.addEventListener('mousemove', (e) => { addParticle(e.clientX, e.clientY); });
+        window.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) addParticle(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+
+        function addParticle(x, y) {
+            particlesTrail.push({
+                x: x, y: y,
+                size: Math.random() * 3 + 1,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                life: 1
+            });
+        }
+
+        function handleTrailParticles() {
+            trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+            for (let i = particlesTrail.length - 1; i >= 0; i--) {
+                let p = particlesTrail[i];
+                p.x += p.vx; p.y += p.vy; p.life -= 0.03;
+                if (p.life <= 0) {
+                    particlesTrail.splice(i, 1);
+                } else {
+                    trailCtx.fillStyle = `rgba(0, 255, 204, ${p.life})`;
+                    trailCtx.beginPath();
+                    trailCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    trailCtx.fill();
+                }
+            }
+            requestAnimationFrame(handleTrailParticles);
+        }
+        handleTrailParticles();
+
+        // --- Terminal Boot Loader Sequence & Anime.js ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const loader = document.getElementById('loader-screen');
+            const terminalText = document.getElementById('terminal-log');
+            const errorCard = document.getElementById('error-card');
+            
+            const logs = [
+                "[FATAL] Route interception failed...",
+                "[SCAN] Analyzing target sector... NOT FOUND.",
+                "[SECURITY] Triggering 404 Quarantine Protocol...",
+                "[SUCCESS] Secure isolation active. Ready."
+            ];
+
+            let index = 0;
+            function typeLog() {
+                if (index < logs.length) {
+                    terminalText.innerHTML += logs[index] + "<br>";
+                    playSciFiSound('boot');
+                    index++;
+                    setTimeout(typeLog, 120);
+                } else {
+                    anime({
+                        targets: '#loader-screen',
+                        opacity: [1, 0],
+                        duration: 400,
+                        easing: 'easeInOutQuad',
+                        complete: function() {
+                            loader.style.display = 'none';
+                            // Animasi kartu 404 muncul pakai Anime.js
+                            anime({
+                                targets: '#error-card',
+                                translateY: [20, 0],
+                                opacity: [0, 1],
+                                duration: 800,
+                                easing: 'easeOutExpo'
+                            });
+                        }
+                    });
+                }
+            }
+
+            if (loader) setTimeout(typeLog, 100);
+
+            // --- Auto-Redirect Countdown ---
+            let timeLeft = 7;
+            const timerEl = document.getElementById('timer');
+            const timerValEl = document.getElementById('timer-val');
+
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                if (timerEl) timerEl.textContent = timeLeft;
+                if (timerValEl) timerValEl.textContent = timeLeft + 's';
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    playSciFiSound('click');
+                    window.location.href = '/';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
