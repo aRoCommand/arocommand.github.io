@@ -358,7 +358,7 @@ body {
   width: 110px;
   height: 110px;
   background: var(--bg-card);
-  background-image: url('profile.jpg'); /* set off url gunakan komentar mulai dari sini hinga... */
+  background-image: url('/files/images/profile.jpg'); /* set off url gunakan komentar mulai dari sini hinga... */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat; /* ...hingga bagian ini untuk ubah bagian gambar ke material icon cek dan set di jalur baris baru tepat dibawah ini  .aro-interactive-card__avatar-box .material-icons */
