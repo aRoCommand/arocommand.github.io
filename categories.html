@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Arsip Post & Detail ー aRoCommand</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__brand-wrapper">
+      <a href="/" class="header__logo"><span class="material-icons">interests</span> aRoCommand</a>
+      <button class="theme-switcher-btn" onclick="toggleThemeModal()" title="Ubah Tema"><span class="material-icons">imagesearch_roller</span></button>
+    </div>
+    <nav class="header__nav">
+      <a href="/" class="header__link"><span class="material-icons">home</span> Beranda</a>
+      <a href="#" class="header__link header__link--active"><span class="material-icons">interests</span> Arsip</a>
+      <a href="about.html" class="header__link"><span class="material-icons">person</span> Tentang</a>
+    </nav>
+  </header>
+  
+  <main class="main categories-main">
+    <div id="searchWrapper">
+      <input type="text" id="searchPost" class="form-control" placeholder="Cari judul arsip atau label kategori...">
+    </div>
+    <div id="postContainer" style="display: flex; flex-direction: column; gap: 1.2rem;"><div></div></div>
+    <div id="paginationContainer" class="pagination-container"></div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <span id="currentYear"></span> aRoCommand. All Rights Reserved.</p>
+  </footer>
+
+  <script src="fitur.js"></script>
+</body>
+</html>
