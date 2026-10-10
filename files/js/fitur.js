@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let secondsLeft = 60;
 
     const loadRandomPost = () => {
-      fetch('categories.json')
+      fetch('/files/json/categories.json')
         .then(res => res.json())
         .then(data => {
           if (!data || data.length === 0) return;
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <span><span class="material-icons" style="font-size: 0.85rem; vertical-align: middle;">label</span> ${escapeHtml(p.labels.join(', '))}</span>
                 </div>
                 <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">${escapeHtml((p.description || (p.blocks && p.blocks.find(b => b.type === 'text')?.content) || '').substring(0, 110))}...</p>
-                <a href="categories.html?post=${encodeURIComponent(p.slug)}" class="btn" style="align-self: flex-start; padding: 0.4rem 0.9rem; font-size: 0.85rem;">Baca Selengkapnya <span class="material-icons" style="font-size: 1rem;">visibility</span></a>
+                <a href="/categories?post=${encodeURIComponent(p.slug)}" class="btn" style="align-self: flex-start; padding: 0.4rem 0.9rem; font-size: 0.85rem;">Baca Selengkapnya <span class="material-icons" style="font-size: 1rem;">visibility</span></a>
               </div>
             </div>
           `;
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Categories & Rendering Logic with Pagination & URL Search Routing
   const postContainer = document.getElementById('postContainer');
   if (postContainer) {
-    fetch('categories.json')
+    fetch('/files/json/categories.json')
       .then(res => res.json())
       .then(data => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const singlePost = data.find(p => p.slug === postSlug);
           if (singlePost) {
             const pageTitleEl = document.getElementById('pageTitle');
-            if (pageTitleEl) pageTitleEl.textContent = `${singlePost.title} ー aRoCommand`;
+            if (pageTitleEl) pageTitleEl.textContent = `${singlePost.title} ー aRo.Is-a.Dev`;
             
             const searchWrapper = document.getElementById('searchWrapper');
             if (searchWrapper) searchWrapper.style.display = 'none';
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </section>
 
                 <div style="margin-top: 2rem;">
-                  <a href="categories.html" class="btn"><span class="material-icons">arrow_back</span> Kembali ke Arsip</a>
+                  <a href="/categories" class="btn"><span class="material-icons">arrow_back</span> Kembali ke Arsip</a>
                 </div>
               </article>
             `;
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (paginationEl) paginationEl.style.display = 'none';
             return;
           } else {
-            window.location.href = '404.html';
+            window.location.href = '/404';
             return;
           }
         }
@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
             p.labels.some(l => l.toLowerCase().includes(query))
           );
           if (currentFilteredData.length === 0) {
-            window.location.href = '404.html';
+            window.location.href = '/404';
             return;
           }
         }
@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span><span class="material-icons" style="font-size: 0.9rem; vertical-align: middle;">label</span> ${escapeHtml(p.labels.join(', '))}</span>
                   </div>
                   <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">${escapeHtml((p.description || (p.blocks && p.blocks.find(b => b.type === 'text')?.content) || '').substring(0, 130))}...</p>
-                  <a href="categories.html?post=${encodeURIComponent(p.slug)}" class="btn" style="align-self: flex-start; margin-top: 0.3rem;">Baca Selengkapnya <span class="material-icons">visibility</span></a>
+                  <a href="/categories?post=${encodeURIComponent(p.slug)}" class="btn" style="align-self: flex-start; margin-top: 0.3rem;">Baca Selengkapnya <span class="material-icons">visibility</span></a>
                 </div>
               </div>
             `;
@@ -486,13 +486,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.changePage = (page) => {
           currentPage = page;
           const currentSearch = document.getElementById('searchPost')?.value.trim();
-          let newUrl = `categories.html?pages=preview-all-${page}`;
+          let newUrl = `/categories?pages=preview-all-${page}`;
           if (currentSearch) {
             newUrl += `&search=${encodeURIComponent(currentSearch)}`;
           }
           window.history.pushState({}, '', newUrl);
           const pageTitleEl = document.getElementById('pageTitle');
-          if (pageTitleEl) pageTitleEl.textContent = `Arsip Post (Halaman ${page}) ー aRoCommand`;
+          if (pageTitleEl) pageTitleEl.textContent = `Arsip Post (Halaman ${page}) ー aRo.Is-a.Dev`;
 
           renderListWithPagination(currentFilteredData, currentPage);
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -507,13 +507,13 @@ document.addEventListener('DOMContentLoaded', () => {
             currentFilteredData = data.filter(p => p.title.toLowerCase().includes(query) || p.labels.some(l => l.toLowerCase().includes(query)));
             
             if (query.length > 0) {
-              window.history.pushState({}, '', `categories.html?search=${encodeURIComponent(query)}`);
+              window.history.pushState({}, '', `/categories?search=${encodeURIComponent(query)}`);
             } else {
-              window.history.pushState({}, '', `categories.html?pages=preview-all-1`);
+              window.history.pushState({}, '', `/categories?pages=preview-all-1`);
             }
 
             if (currentFilteredData.length === 0 && query.length > 0) {
-              window.location.href = '404.html';
+              window.location.href = '/404';
               return;
             }
 
@@ -923,7 +923,7 @@ function updateJsonPreviewData() {
     quote
   };
 
-  fetch('categories.json')
+  fetch('/files/json/categories.json')
     .then(res => res.json())
     .then(existingData => {
       const combined = [newPostObj, ...existingData];
@@ -958,7 +958,7 @@ window.handleSavePost = (e) => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'categories.json';
+  a.download = '/files/json/categories.json';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -980,7 +980,7 @@ window.downloadJsonFile = () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'categories.json';
+  a.download = '/files/json/categories.json';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
