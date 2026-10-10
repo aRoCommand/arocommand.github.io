@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const postSection = document.getElementById('postSection');
   const logoutBtn = document.getElementById('logoutBtn');
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxyPX8fr0pLK9ayHNOMn7-rJDGLjI93LhrrFiUIo5Ddy6UBrp7Qv2VKfEDFNVbfaBAelg/exec';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbw1wF8ZyMOwBMpkZifZhadMla5gYtoJTz4Hn7qf5AcDVD_jkBbJThZEZnyzmswiNci2AA/exec';
 
   if (loginForm && postSection) {
     const isLogged = localStorage.getItem('arocommand_auth') === 'true';
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchQuery = urlParams.get('search');
         const pagesQuery = urlParams.get('pages');
         
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMgSHtS1YWlIG2m2xYuAgM6S6pG_OHEkozlNSpbY9wVOn3ABM5Ft-RveBsbROkQt5PjA/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1RDfa4at7vbD_FJTJFjmlXhs6IJQ9wJ9Q9m9jUufZUu0xiBKqEgOxdXoBj8VNlPQq2w/exec';
 
         // Single Full Post View
         if (postSlug) {
