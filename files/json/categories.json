@@ -1,1 +1,53 @@
-
+[
+  {
+    "slug": "penampakan-java-script-url-ganda--08-10-26--08-10wib",
+    "title": "penampakan java script url ganda",
+    "thumbnail": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80",
+    "author": "aRo",
+    "date": "08 Oktober 2026 pukul 08.10 WIB",
+    "labels": [
+      "JavaScript",
+      "Advanced",
+      "CSS",
+      "Security"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "content": "preview tampilan penulisan link teks"
+      },
+      {
+        "type": "html",
+        "content": "<a href=\"/\" class=\"post__link\" data-url=\"https://aro.is-a.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"aRo.Is-a.Dev\">aro.is-a.dev</a>"
+      },
+      {
+        "type": "script",
+        "lang": "html",
+        "code": "<a href=\"/\" class=\"post__link\" data-url=\"https://aro.is-a.dev/\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"aRo.Is-a.Dev\">aro.is-a.dev</a>"
+      },
+      {
+        "type": "text",
+        "content": "href pertama itu yg terlihat pada kursor jika diarahkan ke link. pas di klik maka akan lompat ke data-url, sedikit trick. tentu tidak hanya pakai script html yg terlihat diatas saja ada tambahan script CSS dan JavaScript berikut di bawah kodenya.."
+      },
+      {
+        "type": "script",
+        "lang": "css",
+        "code": "/* post link */\n.post__link,\n.post__link:link,\n.post__link:visited,\n.post__link:active,\n.post__link:focus {\n  color: var(--accent);\n  text-decoration: none;\n  font-size: 0.9rem;\n  display: flex;\n  align-items: center;\n  gap: 0.4rem;\n}\n\n.post__link:hover {\n  color: var(--text-muted);\n}"
+      },
+      {
+        "type": "text",
+        "content": "post__link kenapa namanya post link.? karna untuk menampilkan link di single post seperti ini ðŸ˜† dan sesuai dengan class yg ada di html diatas.. post__link"
+      },
+      {
+        "type": "script",
+        "lang": "javascript",
+        "code": "// post link\n  document.querySelectorAll('.post__link').forEach(link => {\n  link.addEventListener('click', function(e) {\n    e.preventDefault();\n    \n    const destination = this.getAttribute('data-url');\n    \n    if (destination && destination !== '') {\n      window.open(destination, '_blank');\n    }\n   });\n  });"
+      },
+      {
+        "type": "text",
+        "content": "dan JavaScript diatas pelengkap semua yg ada dari html dan css tanpa javascript tersebut maka gakan berfungsi dengan optimal.\nuntuk di bagian css color var --accent itu bikin root warna di paling atas biar ga bingung warna apa accent ðŸ˜‚.\nsampai jumpa dilain kesempatan.."
+      }
+    ],
+    "quote": "script diatas hanya sebagian kecil yg terlihat"
+  }
+]
