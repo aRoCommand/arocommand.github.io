@@ -1,152 +1,43 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Images Directory Protected // aRo Engine</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-deep: #030712;
-            --surface-glass: rgba(10, 17, 34, 0.88);
-            --border-neon: rgba(0, 255, 204, 0.35);
-            --border-glow: rgba(0, 255, 204, 0.8);
-            --neon-cyan: #00ffcc;
-            --neon-purple: #9d4edd;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scrollbar-width: thin;
-            scrollbar-color: var(--neon-cyan) var(--bg-deep);
-            -webkit-text-size-adjust: 100%;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 255, 204, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(157, 78, 221, 0.06) 0%, transparent 40%),
-                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-            min-height: 100vh;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .shield-card {
-            max-width: 500px;
-            width: 100%;
-            background: var(--surface-glass);
-            border: 1px solid var(--border-neon);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 255, 204, 0.15);
-            backdrop-filter: blur(16px);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shield-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-        }
-
-        .shield-icon {
-            font-size: 2.5rem;
-            color: var(--neon-cyan);
-            margin-bottom: 15px;
-            text-shadow: 0 0 15px var(--neon-cyan);
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            color: var(--neon-cyan);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        p {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .redirect-btn {
-            display: inline-block;
-            background: rgba(0, 255, 204, 0.08);
-            border: 1px solid var(--border-neon);
-            color: var(--neon-cyan);
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-            cursor: pointer;
-        }
-
-        .redirect-btn:hover {
-            background: rgba(0, 255, 204, 0.2);
-            box-shadow: 0 0 20px var(--neon-cyan);
-            border-color: var(--neon-cyan);
-        }
-
-        .countdown-txt {
-            margin-top: 15px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Elemen SEO On-Page -->
+  <title>403 ー Arwah Menolak Untuk Memberikan Akses</title>
+  <meta name="description" content="403 Forbidden: Server memahami permintaan Anda, tetapi Anda tidak memiliki izin untuk mengakses halaman tersebut.">
+  <meta name="robots" content="index, follow">
+  <!-- Favicon Utama (Format ICO standar 32x32/48x48/64x64) -->
+   <link rel="icon" href="/files/images/favicon/32x32/favicon.ico" sizes="32x32" type="image/x-icon">
+   <link rel="icon" href="/files/images/favicon/48x48/favicon.ico" sizes="48x48" type="image/x-icon">
+   <link rel="icon" href="/files/images/favicon/64x64/favicon.ico" sizes="64x64" type="image/x-icon">
+  <!-- Apple Touch Icon (Untuk perangkat iOS/Safari - Ukuran umum 180x180) -->
+   <link rel="apple-touch-icon"  href="/files/images/favicon/180x180/apple-touch-icon.png" sizes="180x180" type="image/png">
+  <link rel="stylesheet" href="/files/css/style.css">
 </head>
 <body>
-
-    <div class="shield-card">
-        <div class="shield-icon">🖼️</div>
-        <h1>ACCESS RESTRICTED // IMAGES DIRECTORY</h1>
-        <p>Direktori penyimpanan aset visual (*images*) ini dilindungi protokol keamanan sistem.</p>
-        <a href="../../" class="redirect-btn">[ KEMBALI KE BERANDA UTAMA ]</a>
-        <div class="countdown-txt">Mengalihkan otomatis dalam <span id="sec">5</span> detik...</div>
+  <header class="header">
+    <div class="header__brand-wrapper">
+      <a href="/" class="header__logo"><span class="material-icons">report_problem</span> aRo.Is-a.Dev</a>
+      <button class="theme-switcher-btn" onclick="toggleThemeModal()" title="Ubah Tema"><span class="material-icons">imagesearch_roller</span></button>
     </div>
+    <nav class="header__nav">
+      <a href="/" class="header__link"><span class="material-icons">home</span> Beranda</a>
+      <a href="/categories.html" class="header__link"><span class="material-icons">interests</span> Arsip</a>
+    </nav>
+  </header>
+  
+  <main class="main" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:60vh; gap:1.5rem;">
+    <span class="material-icons" style="font-size:5rem; color:var(--accent);">report_problem</span>
+    <h1 class="glitch-error" style="font-family:var(--font-horror); font-size:4rem; color:var(--accent);">403 - Arwah Menolak Untuk Memberikan Akses</h1>
+    <p style="font-family:var(--font-mono); "color:var(--text-muted); max-width:500px; line-height: 1.6;">Halaman atau Link yang Anda tuju telah tersesat ke dimensi lain. Anda akan dialihkan kembali secara otomatis dalam <span id="countdownNum" style="color:var(--accent); font-weight:bold;">10</span> detik.</p>
+    <a href="/" class="btn"><span class="material-icons">arrow_back</span> Kembali ke Beranda Sekarang</a>
+  </main>
 
-    <!-- Integrasi Anime.js & Script Utama -->
-    <script src="files/js/anime.min.js"></script>
-    <script src="files/js/main.js"></script>
-    
-    <script>
-        let timeLeft = 5;
-        const secEl = document.getElementById('sec');
-        
-        const timer = setInterval(() => {
-            timeLeft--;
-            if(secEl) secEl.innerText = timeLeft;
-            if(timeLeft <= 0) {
-                clearInterval(timer);
-                window.location.href = '../../';
-            }
-        }, 1000);
-    </script>
+  <footer class="footer">
+    <p>&copy; <span id="currentYear"></span> aRo.Is-a.Dev. All Rights Reserved.</p>
+  </footer>
+
+  <script src="/files/js/fitur.js"></script>
 </body>
 </html>
