@@ -230,7 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                   `;
                 } else if (b.type === 'html') {
-                  return `<div style="margin: 1rem 0; color: var(--text-main);">${b.content}</div>`;
+                  return `<div style="margin: 1rem 0; width: 100%;">
+            <iframe srcdoc="${escapeHtml(b.content)}" style="width: 100%; height: 600px; border: 1px solid var(--border); border-radius: 6px; background: #000;" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>`;
                 } else if (b.type === 'text') {
                   return `<p style="line-height: 1.7; margin: 1rem 0; color: var(--text-main);">${escapeHtml(b.content)}</p>`;
                 } else if (b.type === 'image') {
