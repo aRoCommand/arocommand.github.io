@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="blood-moon">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Elemen SEO On-Page -->
+  <title>The Dark Catur ー Game Catur Interaktif</title>
+  <meta name="description" content="Game Catur Interaktif: aRo.Is-a.Dev The Dark Catur, mini games untuk dimainkan 2±Player and vs Komputer">
+  <meta name="robots" content="index, follow">
+  <!-- Canonical URL -->
+   <link rel="canonical" href="https://aro.is-a.dev/">
+  <!-- Favicon Utama (Format ICO standar 32x32/48x48/64x64) -->
+   <link rel="icon" href="/files/images/favicon/32x32/favicon.ico" sizes="32x32" type="image/x-icon">
+   <link rel="icon" href="/files/images/favicon/48x48/favicon.ico" sizes="48x48" type="image/x-icon">
+   <link rel="icon" href="/files/images/favicon/64x64/favicon.ico" sizes="64x64" type="image/x-icon">
+  <!-- Apple Touch Icon (Untuk perangkat iOS/Safari - Ukuran umum 180x180) -->
+   <link rel="apple-touch-icon"  href="/files/images/favicon/180x180/apple-touch-icon.png" sizes="180x180" type="image/png">
+  <style>
+    /* --- CSS LENGKAP DENGAN VARIABEL FONT PER TEMA --- */
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Creepster&family=Inter:wght@400;500;600;700&family=Orbitron:wght@500&family=Playfair+Display:ital,wght@0,600;1,400&family=Special+Elite&family=VT323&display=swap');
+
+    *, *::before, *::after {  
+      box-sizing: border-box;  
+      margin: 0;  
+      padding: 0;
+    }
+
+    :root {  
+      --bg-primary: #0a0a0c;  
+      --bg-secondary: #141418;  
+      --bg-card: #1c1c24;  
+      --text-main: #e2e8f0;  
+      --text-muted: #94a3b8;  
+      --accent: #dc2626;  
+      --accent-hover: #b91c1c;  
+      --border: #2d2d3d;  
+      --shadow: rgba(220, 38, 38, 0.2);  
+      --font-horror: 'Creepster', cursive;  
+      --font-mono: 'Special Elite', monospace;  
+      --font-custom: 'Inter', sans-serif;  
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="abyssal-void"] {  
+      --bg-primary: #020617;  
+      --bg-secondary: #0f172a;  
+      --bg-card: #1e293b;  
+      --accent: #38bdf8;  
+      --accent-hover: #0ea5e9;  
+      --text-main: #f8fafc;  
+      --border: #334155;  
+      --shadow: rgba(56, 189, 248, 0.2);
+      --font-custom: 'Orbitron', sans-serif;
+    }
+
+    [data-theme="toxic-hazard"] {  
+      --bg-primary: #05160a;  
+      --bg-secondary: #0a2610;  
+      --bg-card: #123719;  
+      --accent: #22c55e;  
+      --accent-hover: #16a34a;  
+      --text-main: #f0fdf4;  
+      --border: #1e4625;  
+      --shadow: rgba(34, 197, 94, 0.2);
+      --font-custom: 'VT323', monospace;
+    }
+
+    [data-theme="blood-moon"] {  
+      --bg-primary: #180202;  
+      --bg-secondary: #2c0505;  
+      --bg-card: #450a0a;  
+      --accent: #f43f5e;  
+      --accent-hover: #e11d48;  
+      --text-main: #fff1f2;  
+      --border: #5f1414;  
+      --shadow: rgba(244, 63, 94, 0.2);
+      --font-custom: 'Cinzel', serif;
+    }
+
+    [data-theme="phantom-shadow"] {  
+      --bg-primary: #0f0f0f;  
+      --bg-secondary: #1a1a1a;  
+      --bg-card: #262626;  
+      --accent: #a855f7;  
+      --accent-hover: #9333ea;  
+      --text-main: #fafafa;  
+      --border: #404040;  
+      --shadow: rgba(168, 85, 247, 0.2);
+      --font-custom: 'Special Elite', monospace;
+    }
+
+    [data-theme="asylum"] {  
+      --bg-primary: #ece6d8;  
+      --bg-secondary: #dbd3bf;  
+      --bg-card: #f5f0e6;  
+      --text-main: #2a2a2a;  
+      --text-muted: #5a5a5a;  
+      --accent: #b71c1c;  
+      --accent-hover: #d32f2f;  
+      --border: #c9bc9f;  
+      --shadow: rgba(183, 28, 28, 0.2);
+      --font-custom: 'Playfair Display', serif;
+    }
+
+    body {  
+      background-color: var(--bg-primary);  
+      color: var(--text-main);  
+      font-family: var(--font-custom);  
+      min-height: 100vh;  
+      display: flex;  
+      flex-direction: column;  
+      overflow-x: hidden;  
+      min-width: 0;
+      transition: var(--transition);
+    }
+
+    /* Header & Navigasi */
+    .header {  
+      background-color: var(--bg-secondary);  
+      border-bottom: 2px solid var(--accent);  
+      padding: 0.8rem 2rem;  
+      display: flex;  
+      justify-content: space-between;  
+      align-items: center;  
+      position: sticky;  
+      top: 0;  
+      z-index: 1000;  
+      min-width: 0;
+    }
+
+    .header__brand-wrapper {  
+      display: flex;  
+      align-items: center;  
+      gap: 0.8rem;
+    }
+
+    .header__logo {  
+      font-family: var(--font-horror);  
+      font-size: 1.6rem;  
+      color: var(--accent);  
+      text-decoration: none;  
+      letter-spacing: 2px;  
+      display: flex;  
+      align-items: center;  
+      gap: 0.4rem;
+    }
+
+    .header__logo .material-icons {  
+      font-size: 1.4rem;
+    }
+
+    .theme-switcher-btn {  
+      background: var(--bg-card);  
+      border: 1px solid var(--border);  
+      color: var(--accent);  
+      width: 32px;  
+      height: 32px;  
+      border-radius: 50%;  
+      cursor: pointer;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+      transition: var(--transition);
+    }
+
+    .theme-switcher-btn .material-icons {  
+      font-size: 1.1rem;
+    }
+
+    .theme-switcher-btn:hover {  
+      background: var(--accent);  
+      color: var(--bg-primary);  
+      box-shadow: 0 0 10px var(--accent);  
+      transform: scale(1.1);
+    }
+
+    .header__nav {  
+      display: flex;  
+      gap: 1rem;  
+      align-items: center;
+    }
+
+    .header__link {  
+      color: var(--text-muted);  
+      text-decoration: none;  
+      font-weight: 600;  
+      font-size: 0.95rem;  
+      display: flex;  
+      align-items: center;  
+      gap: 0.3rem;  
+      transition: var(--transition);  
+      padding: 0.4rem 0.6rem;  
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .header__link .material-icons {  
+      font-size: 1.1rem;
+    }
+
+    .header__link:hover, .header__link--active {  
+      color: var(--accent);  
+      background-color: var(--bg-card);
+    }
+
+    /* Main Layout - Centered sempurna di Desktop, Laptop & MacBook */
+    .main {  
+      flex: 1;  
+      padding: 3rem 2rem;  
+      max-width: 1450px;  
+      margin: 0 auto;  
+      width: 100%;  
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .game-title {
+      font-family: var(--font-horror);
+      color: var(--accent);
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    /* Kontrol Pemilihan Mode Game */
+    .mode-selector {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .mode-btn {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-family: var(--font-custom);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .mode-btn.active, .mode-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--shadow);
+    }
+
+    /* Kontrol Tingkat Kesulitan */
+    .difficulty-selector {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .diff-btn {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.4rem;
+      border-radius: 6px;
+      font-family: var(--font-custom);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .diff-btn.active, .diff-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--shadow);
+    }
+
+    .game-status {
+      font-family: var(--font-custom);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Panel Log Bidak Termakan dengan Scroll Horizontal */
+    .captured-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-family: var(--font-custom);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .captured-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      width: 100%;
+    }
+
+    .captured-label {
+      min-width: 110px;
+      flex-shrink: 0;
+    }
+
+    .captured-pieces-scroll {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      white-space: nowrap;
+      width: 100%;
+      padding-bottom: 3px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--bg-card);
+    }
+
+    .captured-pieces-scroll::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .captured-pieces-scroll::-webkit-scrollbar-track {
+      background: var(--bg-card);
+      border-radius: 4px;
+    }
+
+    .captured-pieces-scroll::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    .captured-piece-item {
+      font-size: 1.3rem;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    /* Papan Catur 100% Kotak & Anti-Turun Naik */
+    .chess-wrapper {
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 10px 30px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .chess-board {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(8, 1fr);
+      width: 100%;
+      aspect-ratio: 1 / 1; /* Papan 100% kotak sempurna */
+      border: 3px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .chess-square {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .chess-square.light {
+      background-color: var(--bg-card);
+    }
+
+    .chess-square.dark {
+      background-color: var(--bg-primary);
+    }
+
+    .chess-square.selected {
+      background-color: var(--accent) !important;
+      opacity: 0.9;
+    }
+
+    .chess-square.highlight::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      opacity: 0.8;
+      z-index: 3;
+    }
+
+    /* Bidak Catur dengan absolute positioning agar tidak mengubah tata letak/turun-naik */
+    .chess-piece {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      z-index: 2;
+      cursor: grab;
+      transition: transform 0.1s ease;
+    }
+
+    .chess-piece:active {
+      cursor: grabbing;
+    }
+
+    /* Tombol */
+    .btn {
+      background: var(--accent);
+      color: var(--text-main);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-family: var(--font-custom);
+    }
+
+    .btn .material-icons {
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 0 15px var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Modal Pop-up */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .modal-overlay--active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: var(--bg-secondary);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 450px;
+      padding: 2rem;
+      box-shadow: 0 0 30px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .modal__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+
+    .modal__title {
+      font-family: var(--font-custom);
+      color: var(--accent);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal__close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .modal__close:hover {
+      color: var(--accent);
+    }
+
+    .modal__body {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {  
+      background-color: var(--bg-secondary);  
+      border-top: 3px solid var(--accent);  
+      text-align: center;  
+      padding: 1.5rem;  
+      color: var(--text-muted);  
+      font-size: 0.9rem;  
+      min-width: 0;  
+      transition: var(--transition);
+    }
+
+    @media (max-width: 768px) {  
+      .header {    
+        flex-direction: column;    
+        gap: 1rem;    
+        padding: 1rem;  
+      }  
+      .header__nav {    
+        flex-wrap: wrap;    
+        justify-content: center;    
+        gap: 0.8rem;  
+      }  
+      .main {    
+        padding: 1.5rem 1rem;  
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__brand-wrapper">
+      <a href="/" class="header__logo">
+        <span class="material-icons">extension</span> The Dark Catur
+      </a>
+      <button class="theme-switcher-btn" id="theme-toggler" title="Ganti Tema Warna & Font">
+        <span class="material-icons">imagesearch_roller</span>
+      </button>
+    </div>
+    <nav class="header__nav">
+      <a href="#" class="header__link header__link--active" id="nav-home"><span class="material-icons">sports_esports</span> Catur</a>
+      <a class="header__link" id="nav-rules"><span class="material-icons">menu_book</span> Cara Bermain</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="game-container">
+      <h1 class="game-title">Dark Catur Arena</h1>
+      
+      <!-- PILIHAN MODE GAME -->
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="pve">vs Komputer</button>
+        <button class="mode-btn" data-mode="pvp">2 Player</button>
+      </div>
+
+      <!-- PILIHAN TINGKAT KESULITAN -->
+      <div class="difficulty-selector" id="difficulty-container">
+        <button class="diff-btn active" data-level="easy">Easy</button>
+        <button class="diff-btn" data-level="normal">Normal</button>
+        <button class="diff-btn" data-level="hard">Hard</button>
+      </div>
+
+      <div class="game-status" id="turn-status">Giliran: Putih</div>
+
+      <!-- PANEL LOG BIDAK TERMAKAN DENGAN SCROLL HORIZONTAL -->
+      <div class="captured-panel">
+        <div class="captured-row">
+          <span class="captured-label">Putih dimakan:</span>
+          <div class="captured-pieces-scroll" id="captured-white"></div>
+        </div>
+        <div class="captured-row">
+          <span class="captured-label">Hitam dimakan:</span>
+          <div class="captured-pieces-scroll" id="captured-black"></div>
+        </div>
+      </div>
+      
+      <div class="chess-wrapper">
+        <div id="chess-board" class="chess-board"></div>
+        <button class="btn" onclick="resetGame()">
+          <span class="material-icons">refresh</span> Reset Game
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL POP-UP UNTUK CARA BERMAIN -->
+  <div class="modal-overlay" id="info-modal">
+    <div class="modal-container">
+      <div class="modal__header">
+        <div class="modal__title" id="modal-title">Judul</div>
+        <button class="modal__close" id="modal-close"><span class="material-icons">close</span></button>
+      </div>
+      <div class="modal__body" id="modal-content">
+        Isi konten...
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; <span id="currentYear"></span> The Dark Catur Project. Seluruh hak cipta dilindungi.</p>
+  </footer>
+
+  <!-- Pustaka logika catur (chess.js) -->
+  <script src="/files/js/catur.js"></script>
+  <script>
+    const yearEls = document.querySelectorAll('#currentYear');
+    yearEls.forEach(el => el.textContent = new Date().getFullYear());
+    // --- Logika Ganti Tema & Font (5 Tema) ---
+    const themes = ['blood-moon', 'abyssal-void', 'toxic-hazard', 'phantom-shadow', 'asylum'];
+    let currentThemeIndex = 0;
+
+    const themeToggler = document.getElementById('theme-toggler');
+    themeToggler.addEventListener('click', () => {
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+      const newTheme = themes[currentThemeIndex];
+      document.body.setAttribute('data-theme', newTheme);
+    });
+
+    // --- Logika Modal untuk Cara Bermain ---
+    const modalOverlay = document.getElementById('info-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const modalClose = document.getElementById('modal-close');
+
+    function openModal(title, htmlContent) {
+      modalTitle.innerHTML = title;
+      modalContent.innerHTML = htmlContent;
+      modalOverlay.classList.add('modal-overlay--active');
+    }
+
+    modalClose.addEventListener('click', () => {
+      modalOverlay.classList.remove('modal-overlay--active');
+    });
+
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('modal-overlay--active');
+      }
+    });
+
+    document.getElementById('nav-rules').addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal('<span class="material-icons">menu_book</span> Cara Bermain', `
+        <p><strong>1. Cara Kontrol:</strong> Klik pada bidak Anda untuk melihat langkah yang valid (ditandai titik indikator), lalu klik kotak tujuan untuk memindahkan bidak.</p>
+        <p style="margin-top: 0.8rem;"><strong>2. Mode Permainan:</strong> Pilih mode <em>vs Komputer</em> dengan tingkat kesulitan Easy, Normal, atau Hard, atau pilih <em>2 Player</em> untuk bermain bersama teman secara bergantian di perangkat yang sama.</p>
+        <p style="margin-top: 0.8rem;"><strong>3. Ganti Tema & Font:</strong> Klik ikon roller (<span class="material-icons" style="font-size:1rem; vertical-align:middle;">imagesearch_roller</span>) di pojok kiri atas untuk berganti di antara 6 tema visual yang memiliki kombinasi warna dan gaya font unik masing-masing.</p>
+      `);
+    });
+
+    // --- Logika Catur & Mode Permainan ---
+    const chess = new Chess();
+    const boardElement = document.getElementById('chess-board');
+    const turnStatus = document.getElementById('turn-status');
+    const capturedWhiteEl = document.getElementById('captured-white');
+    const capturedBlackEl = document.getElementById('captured-black');
+
+    let gameMode = 'pve'; // 'pve' atau 'pvp'
+    let currentDifficulty = 'easy';
+    let capturedWhite = []; 
+    let capturedBlack = []; 
+
+    const modeButtons = document.querySelectorAll('.mode-btn');
+    const diffContainer = document.getElementById('difficulty-container');
+    const diffButtons = document.querySelectorAll('.diff-btn');
+
+    modeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        gameMode = btn.dataset.mode;
+        
+        if (gameMode === 'pve') {
+          diffContainer.style.display = 'flex';
+        } else {
+          diffContainer.style.display = 'none';
+        }
+        resetGame();
+      });
+    });
+
+    diffButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        diffButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentDifficulty = btn.dataset.level;
+        resetGame();
+      });
+    });
+
+    const pieceSymbols = {
+      p: '♟', r: '♜', n: '♞', b: '♝', q: '♛', k: '♚',
+      P: '♙', R: '♖', N: '♘', B: '♗', Q: '♕', K: '♔'
+    };
+
+    let selectedSquare = null;
+    let validMoves = [];
+
+    function renderBoard() {
+      boardElement.innerHTML = '';
+      const boardState = chess.board();
+
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          const squareDiv = document.createElement('div');
+          const isLight = (r + c) % 2 === 0;
+          squareDiv.className = `chess-square ${isLight ? 'light' : 'dark'}`;
+          
+          const file = String.fromCharCode(97 + c);
+          const rank = 8 - r;
+          const squareCoord = `${file}${rank}`;
+
+          squareDiv.dataset.square = squareCoord;
+
+          if (selectedSquare === squareCoord) {
+            squareDiv.classList.add('selected');
+          }
+
+          if (validMoves.includes(squareCoord)) {
+            squareDiv.classList.add('highlight');
+          }
+
+          const piece = boardState[r][c];
+          if (piece) {
+            const pieceDiv = document.createElement('div');
+            pieceDiv.className = 'chess-piece';
+            pieceDiv.textContent = piece.color === 'w' ? pieceSymbols[piece.type.toUpperCase()] : pieceSymbols[piece.type];
+            pieceDiv.style.color = piece.color === 'w' ? '#f8fafc' : '#0f172a';
+            pieceDiv.style.textShadow = piece.color === 'w' ? '0 0 3px rgba(0,0,0,0.8)' : '0 0 3px rgba(255,255,255,0.4)';
+            squareDiv.appendChild(pieceDiv);
+          }
+
+          squareDiv.addEventListener('click', () => handleSquareClick(squareCoord));
+          boardElement.appendChild(squareDiv);
+        }
+      }
+
+      updateStatus();
+      updateCapturedUI();
+    }
+
+    function handleSquareClick(square) {
+      if (chess.game_over()) return;
+
+      if (gameMode === 'pve' && chess.turn() === 'b') return;
+
+      if (selectedSquare === null) {
+        const piece = chess.get(square);
+        if (piece && piece.color === chess.turn()) {
+          selectedSquare = square;
+          validMoves = chess.moves({ square: square, verbose: true }).map(m => m.to);
+          renderBoard();
+        }
+      } else {
+        if (selectedSquare === square) {
+          selectedSquare = null;
+          validMoves = [];
+          renderBoard();
+          return;
+        }
+
+        const targetPiece = chess.get(square);
+
+        const move = chess.move({
+          from: selectedSquare,
+          to: square,
+          promotion: 'q'
+        });
+
+        if (move === null) {
+          const piece = chess.get(square);
+          if (piece && piece.color === chess.turn()) {
+            selectedSquare = square;
+            validMoves = chess.moves({ square: square, verbose: true }).map(m => m.to);
+            renderBoard();
+          } else {
+            selectedSquare = null;
+            validMoves = [];
+            renderBoard();
+          }
+        } else {
+          if (targetPiece) {
+            if (targetPiece.color === 'w') {
+              capturedWhite.push(pieceSymbols[targetPiece.type.toUpperCase()]);
+            } else {
+              capturedBlack.push(pieceSymbols[targetPiece.type]);
+            }
+          }
+
+          selectedSquare = null;
+          validMoves = [];
+          renderBoard();
+
+          if (gameMode === 'pve' && !chess.game_over() && chess.turn() === 'b') {
+            turnStatus.textContent = "Komputer sedang berpikir...";
+            setTimeout(makeComputerMove, 300);
+          }
+        }
+      }
+    }
+
+    // --- LOGIKA KOMPUTER ---
+    function makeComputerMove() {
+      const possibleMoves = chess.moves({ verbose: true });
+      if (possibleMoves.length === 0) return;
+
+      let chosenMove = null;
+
+      if (currentDifficulty === 'easy') {
+        const randomIndex = Math.floor(Math.random() * possibleMoves.length);
+        chosenMove = possibleMoves[randomIndex];
+      } 
+      else if (currentDifficulty === 'normal') {
+        const captureMoves = possibleMoves.filter(m => m.captured);
+        if (captureMoves.length > 0) {
+          chosenMove = captureMoves[Math.floor(Math.random() * captureMoves.length)];
+        } else {
+          chosenMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+        }
+      } 
+      else if (currentDifficulty === 'hard') {
+        let bestScore = -9999;
+        let bestMoves = [];
+
+        for (let i = 0; i < possibleMoves.length; i++) {
+          let move = possibleMoves[i];
+          chess.move(move);
+          let score = minimax(1, false, -10000, 10000);
+          chess.undo();
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestMoves = [move];
+          } else if (score === bestScore) {
+            bestMoves.push(move);
+          }
+        }
+        chosenMove = bestMoves[Math.floor(Math.random() * bestMoves.length)] || possibleMoves[0];
+      }
+
+      if (chosenMove) {
+        const targetPiece = chess.get(chosenMove.to);
+        if (targetPiece && targetPiece.color === 'w') {
+          capturedWhite.push(pieceSymbols[targetPiece.type.toUpperCase()]);
+        }
+
+        chess.move(chosenMove);
+      }
+      renderBoard();
+    }
+
+    function evaluateBoard(board) {
+      let totalEvaluation = 0;
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          let piece = board[r][c];
+          if (piece) {
+            totalEvaluation += getPieceValue(piece);
+          }
+        }
+      }
+      return totalEvaluation;
+    }
+
+    function getPieceValue(piece) {
+      if (!piece) return 0;
+      const values = { p: 10, n: 30, b: 30, r: 50, q: 90, k: 900 };
+      let val = values[piece.type];
+      return piece.color === 'b' ? val : -val;
+    }
+
+    function minimax(depth, isMaximizing, alpha, beta) {
+      if (depth === 0 || chess.game_over()) {
+        return evaluateBoard(chess.board());
+      }
+
+      let possibleMoves = chess.moves({ verbose: true });
+
+      if (isMaximizing) {
+        let maxEval = -9999;
+        for (let i = 0; i < possibleMoves.length; i++) {
+          chess.move(possibleMoves[i]);
+          let evaluation = minimax(depth - 1, false, alpha, beta);
+          chess.undo();
+          maxEval = Math.max(maxEval, evaluation);
+          alpha = Math.max(alpha, evaluation);
+          if (beta <= alpha) break;
+        }
+        return maxEval;
+      } else {
+        let minEval = 9999;
+        for (let i = 0; i < possibleMoves.length; i++) {
+          chess.move(possibleMoves[i]);
+          let evaluation = minimax(depth - 1, true, alpha, beta);
+          chess.undo();
+          minEval = Math.min(minEval, evaluation);
+          beta = Math.min(beta, evaluation);
+          if (beta <= alpha) break;
+        }
+        return minEval;
+      }
+    }
+
+    function updateCapturedUI() {
+      capturedWhiteEl.innerHTML = capturedWhite.map(p => `<span class="captured-piece-item">${p}</span>`).join(' ');
+      capturedBlackEl.innerHTML = capturedBlack.map(p => `<span class="captured-piece-item">${p}</span>`).join(' ');
+    }
+
+    function updateStatus() {
+      let status = '';
+      let turnText = '';
+
+      if (gameMode === 'pve') {
+        turnText = chess.turn() === 'w' ? 'Putih (Anda)' : 'Hitam (Komputer)';
+      } else {
+        turnText = chess.turn() === 'w' ? 'Putih' : 'Hitam';
+      }
+
+      if (chess.in_checkmate()) {
+        status = `Skakmat! ${chess.turn() === 'w' ? 'Hitam' : 'Putih'} Menang!`;
+      } else if (chess.in_draw()) {
+        status = 'Permainan Berakhir Seri (Draw)';
+      } else {
+        status = `Giliran: ${turnText}`;
+        if (chess.in_check()) {
+          status += ' (SKAK!)';
+        }
+      }
+      turnStatus.textContent = status;
+    }
+
+    function resetGame() {
+      chess.reset();
+      selectedSquare = null;
+      validMoves = [];
+      capturedWhite = [];
+      capturedBlack = [];
+      renderBoard();
+    }
+
+    renderBoard();
+  </script>
+</body>
+</html>
