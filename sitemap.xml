@@ -55,6 +55,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://aro.is-a.dev/Games/catur</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://aro.is-a.dev/categories?post=penampakan-java-script-url-ganda--08-10-26--08-10wib</loc>
     <lastmod>2026-10-08</lastmod>
     <changefreq>daily</changefreq>
